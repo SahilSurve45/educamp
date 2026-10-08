@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --primary: #1f2a5a;
+  --primary-foreground: #f7f7ff;
+  --background: #f8f9ff;
+  --foreground: #18352f;
+  --card: #ffffff;
+  --card-foreground: #18352f;
+  --popover: #ffffff;
+  --popover-foreground: #18352f;
+  --secondary: #eef0ff;
+  --secondary-foreground: #3c4776;
+  --muted: #eef3eb;
+  --muted-foreground: #727b9c;
+  --accent: #f4f0ff;
+  --accent-foreground: #635bdb;
+  --border: #e0e3f0;
+  --input: #e0e3f0;
+  --ring: #635bdb;
+  --radius: 0.9rem;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  button:not(:disabled), a[href], select:not(:disabled), input[type="range"] { cursor: pointer; }
+  ::selection { background: #d8d9ff; color: #1f2a5a; }
+}
+
+@layer components {
+  .container { width: 100%; margin-inline: auto; padding-inline: 1rem; }
+  @media (min-width: 640px) { .container { padding-inline: 1.5rem; } }
+  @media (min-width: 1024px) { .container { max-width: 1280px; padding-inline: 2rem; } }
+  .font-display { font-family: "Plus Jakarta Sans", sans-serif; }
+  .eyebrow { @apply text-[10px] font-bold uppercase tracking-[0.18em] text-[#9299b2]; }
+  .nav-link { @apply relative py-2 text-sm font-semibold text-[#727b9c] transition-colors duration-200 hover:text-[#1f2a5a]; }
+  .nav-link-active { @apply text-[#1f2a5a]; }
+  .nav-link-active::after { content: ""; @apply absolute -bottom-1 left-0 right-0 mx-auto h-0.5 rounded-full bg-[#635bdb]; }
+  .pill { @apply inline-flex items-center gap-2 rounded-full border border-[#dbe7d5] bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#8991ad]; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-[#1f2a5a] px-4 py-3 text-sm font-bold text-[#f7f7ff] shadow-[0_8px_18px_rgba(23,59,52,0.14)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#384582] active:scale-[0.98]; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[#cfd3ea] bg-[#eef0ff] px-4 py-3 text-sm font-bold text-[#3c4776] transition duration-200 hover:-translate-y-0.5 hover:bg-[#e6e8f7] active:scale-[0.98]; }
+  .button-ghost { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[#dce0ef] bg-white/70 px-4 py-3 text-sm font-bold text-[#527068] transition duration-200 hover:-translate-y-0.5 hover:border-[#c5cae5] hover:bg-white active:scale-[0.98]; }
+  .button-soft { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-[#f3f4ff] px-4 py-3 text-sm font-bold text-[#71877f] transition hover:bg-[#ebecfb] active:scale-[0.98]; }
+  .icon-button { @apply grid size-10 place-items-center rounded-xl border border-[#dce0ef] bg-white text-[#8991ad] transition duration-200 hover:-translate-y-0.5 hover:border-[#635bdb] hover:text-[#635bdb] active:scale-[0.96]; }
+  .icon-button-saved { @apply border-[#f1c9a8] bg-[#f4f0ff] text-[#635bdb]; }
+  .input { @apply h-11 w-full rounded-xl border border-[#e0e3f0] bg-[#fbfdf9] px-3 text-sm font-semibold text-[#3c4776] outline-none transition placeholder:text-[#a2a8c0] focus:border-[#bcc2e1] focus:bg-white focus:ring-2 focus:ring-[#e5e4ff]; }
+  table th, table td { vertical-align: middle; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
